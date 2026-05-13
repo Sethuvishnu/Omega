@@ -16,18 +16,30 @@ const useGetFeedPosts = () => {
 	useEffect(() => {
 		const getFeedPosts = async () => {
 			setIsLoading(true);
-			if (authUser.following.length === 0) {
+
+			// Include yourself in the feed
+			const followingWithSelf = [...authUser.following, authUser.uid];
+
+			if (followingWithSelf.length === 0) {
 				setIsLoading(false);
 				setPosts([]);
 				return;
 			}
-			const q = query(collection(firestore, "posts"), where("createdBy", "in", authUser.following));
+
+			const q = query(
+				collection(firestore, "posts"),
+				where("createdBy", "in", followingWithSelf)
+			);
+
 			try {
 				const querySnapshot = await getDocs(q);
 				const feedPosts = [];
 
 				querySnapshot.forEach((doc) => {
-					feedPosts.push({ id: doc.id, ...doc.data() });
+					const data = doc.data();
+					if (data.imageURL) {
+						feedPosts.push({ id: doc.id, ...data });
+					}
 				});
 
 				feedPosts.sort((a, b) => b.createdAt - a.createdAt);

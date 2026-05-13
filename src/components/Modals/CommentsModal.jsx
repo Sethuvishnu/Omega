@@ -39,8 +39,8 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
 		<Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInLeft'>
 			<ModalOverlay />
 			<ModalContent bg={"black"} border={"1px solid gray"} maxW={"400px"}>
-				<ModalHeader>Comments</ModalHeader>
-				<ModalCloseButton />
+				<ModalHeader borderBottom={"1px solid gray"} color={"white"}>Comments</ModalHeader>
+				<ModalCloseButton color={"white"} />
 				<ModalBody pb={6}>
 					<Flex
 						mb={4}

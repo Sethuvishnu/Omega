@@ -15,13 +15,15 @@ const Comment = ({ comment }) => {
 			<Flex direction={"column"}>
 				<Flex gap={2} alignItems={"center"}>
 					<Link to={`/${userProfile.username}`}>
-						<Text fontWeight={"bold"} fontSize={12}>
+						<Text fontWeight={"bold"} fontSize={12} color={"white"}>
 							{userProfile.username}
 						</Text>
 					</Link>
-					<Text fontSize={14}>{comment.comment}</Text>
+					<Text fontSize={14} color={"whiteAlpha.900"}>
+						{comment.comment}
+					</Text>
 				</Flex>
-				<Text fontSize={12} color={"gray"}>
+				<Text fontSize={12} color={"gray.400"}>
 					{timeAgo(comment.createdAt)}
 				</Text>
 			</Flex>
@@ -34,10 +36,10 @@ export default Comment;
 const CommentSkeleton = () => {
 	return (
 		<Flex gap={4} w={"full"} alignItems={"center"}>
-			<SkeletonCircle h={10} w='10' />
+			<SkeletonCircle h={10} w='10' startColor="gray.700" endColor="gray.600" />
 			<Flex gap={1} flexDir={"column"}>
-				<Skeleton height={2} width={100} />
-				<Skeleton height={2} width={50} />
+				<Skeleton height={2} width={100} startColor="gray.700" endColor="gray.600" />
+				<Skeleton height={2} width={50} startColor="gray.700" endColor="gray.600" />
 			</Flex>
 		</Flex>
 	);
