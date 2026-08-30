@@ -18,7 +18,7 @@ const AuthForm = () => {
 					{/* ---------------- OR -------------- */}
 					<Flex alignItems={"center"} justifyContent={"center"} my={4} gap={1} w={"full"}>
 						<Box flex={2} h={"1px"} bg={"gray.400"} />
-						<Text mx={1} color={"white"}>
+						<Text mx={1} color={"gray.500"}>
 							OR
 						</Text>
 						<Box flex={2} h={"1px"} bg={"gray.400"} />
@@ -30,7 +30,7 @@ const AuthForm = () => {
 
 			<Box border={"1px solid gray"} borderRadius={4} padding={5}>
 				<Flex alignItems={"center"} justifyContent={"center"}>
-					<Box mx={2} fontSize={14}>
+					<Box mx={2} fontSize={14} color={"gray.800"}>
 						{isLogin ? "Don't have an account?" : "Already have an account?"}
 					</Box>
 					<Box onClick={() => setIsLogin(!isLogin)} color={"orange.500"} cursor={"pointer"}>
