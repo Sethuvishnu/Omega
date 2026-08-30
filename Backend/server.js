@@ -39,8 +39,8 @@ const BLOCKED_WORDS = [
     // slurs
     'nigga', 'nigger', 'chink', 'spic', 'kike', 'faggot', 'fag', 'dyke', 'tranny',
     // sexual
-    'fuck you', 'fuckyou', 'fuck off', 'motherfucker', 'motherfucking',
-    'bitch', 'whore', 'slut', 'cunt', 'pussy', 'dick', 'cock', 'asshole',
+    'fuck you',  'fuck off', 'motherfucker', 'motherfucking',
+    'bitch', 'whore', 'slut', 'pussy', 'dick', 'cock', 'asshole',
     'fucker', 'bastard', 'son of a bitch',
     // threats
     'kill yourself', 'kys', 'go die', 'i will kill', 'i will hurt',
