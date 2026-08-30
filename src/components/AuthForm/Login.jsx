@@ -16,8 +16,11 @@ const Login = () => {
 				type='email'
 				size={"sm"}
 				variant="outline"
+				color="gray.800"
 				borderColor="gray.300"
 				borderWidth="1px"
+				_placeholder={{ color: "gray.500" }}
+				_focus={{ borderColor: "orange.400" }}
 				value={inputs.email}
 				onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 			/>
@@ -27,8 +30,11 @@ const Login = () => {
 				size={"sm"}
 				type='password'
 				variant="outline"
+				color="gray.800"
 				borderColor="gray.300"
 				borderWidth="1px"
+				_placeholder={{ color: "gray.500" }}
+				_focus={{ borderColor: "orange.400" }}
 				value={inputs.password}
 				onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 			/>

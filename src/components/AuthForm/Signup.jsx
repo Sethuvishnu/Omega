@@ -89,8 +89,11 @@ const Signup = () => {
 				type="text"
 				size="sm"
 				variant="outline"
+				color="gray.800"
 				borderColor="gray.300"
 				borderWidth="1px"
+				_placeholder={{ color: "gray.500" }}
+				_focus={{ borderColor: "orange.400" }}
 				value={inputs.fullName}
 				onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
 				onBlur={() => handleBlur("fullName")}
@@ -103,8 +106,11 @@ const Signup = () => {
 				type="text"
 				size="sm"
 				variant="outline"
+				color="gray.800"
 				borderColor="gray.300"
 				borderWidth="1px"
+				_placeholder={{ color: "gray.500" }}
+				_focus={{ borderColor: "orange.400" }}
 				value={inputs.username}
 				onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
 				onBlur={() => handleBlur("username")}
@@ -118,7 +124,9 @@ const Signup = () => {
 					type="email"
 					size="sm"
 					variant="outline"
+					color="gray.800"
 					borderWidth="1px"
+					_placeholder={{ color: "gray.500" }}
 					value={inputs.email}
 					onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 					onBlur={() => handleBlur("email")}
@@ -149,8 +157,11 @@ const Signup = () => {
 						value={inputs.password}
 						size="sm"
 						variant="outline"
+						color="gray.800"
 						borderColor="gray.300"
 						borderWidth="1px"
+						_placeholder={{ color: "gray.500" }}
+						_focus={{ borderColor: "orange.400" }}
 						onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 						onBlur={() => handleBlur("password")}
 					/>
