@@ -19,7 +19,6 @@ import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPass
 // ── helpers ────────────────────────────────────────────────────────────────
 
 const isValidEmail = (email) => {
-	// must contain @ and a dot after the @, standard RFC-ish check
 	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
@@ -79,7 +78,7 @@ const Signup = () => {
 		inputs.email &&
 		!emailError &&
 		inputs.password &&
-		strength.score >= 40; // at least "Weak" to submit
+		strength.score >= 40;
 
 	return (
 		<VStack spacing={3} align="stretch">
@@ -89,6 +88,9 @@ const Signup = () => {
 				fontSize={14}
 				type="text"
 				size="sm"
+				variant="outline"
+				borderColor="gray.300"
+				borderWidth="1px"
 				value={inputs.fullName}
 				onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
 				onBlur={() => handleBlur("fullName")}
@@ -100,6 +102,9 @@ const Signup = () => {
 				fontSize={14}
 				type="text"
 				size="sm"
+				variant="outline"
+				borderColor="gray.300"
+				borderWidth="1px"
 				value={inputs.username}
 				onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
 				onBlur={() => handleBlur("username")}
@@ -112,10 +117,12 @@ const Signup = () => {
 					fontSize={14}
 					type="email"
 					size="sm"
+					variant="outline"
+					borderWidth="1px"
 					value={inputs.email}
 					onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 					onBlur={() => handleBlur("email")}
-					borderColor={touched.email && emailError ? "red.400" : undefined}
+					borderColor={touched.email && emailError ? "red.400" : "gray.300"}
 					_focus={{
 						borderColor: touched.email && emailError ? "red.400" : "orange.400",
 					}}
@@ -141,6 +148,9 @@ const Signup = () => {
 						type={showPassword ? "text" : "password"}
 						value={inputs.password}
 						size="sm"
+						variant="outline"
+						borderColor="gray.300"
+						borderWidth="1px"
 						onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 						onBlur={() => handleBlur("password")}
 					/>
@@ -155,7 +165,6 @@ const Signup = () => {
 					</InputRightElement>
 				</InputGroup>
 
-				{/* Password strength bar */}
 				{inputs.password && (
 					<Box mt={2}>
 						<Progress
@@ -174,7 +183,6 @@ const Signup = () => {
 							{strength.label}
 						</Text>
 
-						{/* Hints for what's missing */}
 						{hints.length > 0 && touched.password && (
 							<VStack align="start" spacing={0} mt={1}>
 								{hints.map((hint) => (
@@ -188,7 +196,6 @@ const Signup = () => {
 				)}
 			</FormControl>
 
-			{/* Server error */}
 			{error && (
 				<Alert status="error" fontSize={13} p={2} borderRadius={4}>
 					<AlertIcon fontSize={12} />
@@ -196,7 +203,6 @@ const Signup = () => {
 				</Alert>
 			)}
 
-			{/* Submit */}
 			<Button
 				w="full"
 				colorScheme="orange"
