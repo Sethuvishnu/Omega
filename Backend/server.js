@@ -36,13 +36,10 @@ const Message = mongoose.model('RandomChatMessage', MessageSchema);
 
 /* ─── Layer 1: Hardcoded blocklist (instant, no API) ─────────── */
 const BLOCKED_WORDS = [
-    // slurs
     'nigga', 'nigger', 'chink', 'spic', 'kike', 'faggot', 'fag', 'dyke', 'tranny',
-    // sexual
     'fuck you',  'fuck off', 'motherfucker', 'motherfucking',
     'bitch', 'whore', 'slut', 'pussy', 'dick', 'cock', 'asshole',
     'fucker', 'bastard', 'son of a bitch',
-    // threats
     'kill yourself', 'kys', 'go die', 'i will kill', 'i will hurt',
     'rape', 'molest',
 ];
@@ -50,7 +47,6 @@ const BLOCKED_WORDS = [
 function localModerate(text) {
     const lower = text.toLowerCase().replace(/\s+/g, ' ').trim();
     for (const word of BLOCKED_WORDS) {
-        // match whole word or phrase
         const regex = new RegExp(`(^|\\s|\\b)${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(\\s|\\b|$)`, 'i');
         if (regex.test(lower)) {
             return { allowed: false, reason: `"${word}" is not allowed in this chat.` };
@@ -59,7 +55,6 @@ function localModerate(text) {
     return { allowed: true };
 }
 
-/* ─── Layer 2: Groq AI (catches what blocklist misses) ───────── */
 async function groqModerate(text) {
     try {
         const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -113,16 +108,13 @@ Reply ONLY with one of:
     }
 }
 
-/* ─── Combined moderation ────────────────────────────────────── */
 async function moderateMessage(text) {
-    // Layer 1: instant local check
     const local = localModerate(text);
     if (!local.allowed) {
         console.log(`🚫 [LOCAL BLOCK]: "${text}" — ${local.reason}`);
         return local;
     }
 
-    // Layer 2: Groq AI deep check
     const ai = await groqModerate(text);
     if (!ai.allowed) {
         console.log(`🚫 [AI BLOCK]: "${text}" — ${ai.reason}`);
@@ -130,7 +122,6 @@ async function moderateMessage(text) {
     return ai;
 }
 
-/* ─── REST: fetch last 50 messages ──────────────────────────── */
 app.get('/api/random-chat/messages', async (req, res) => {
     try {
         const messages = await Message.find()
@@ -143,7 +134,6 @@ app.get('/api/random-chat/messages', async (req, res) => {
     }
 });
 
-/* ─── Socket.io ──────────────────────────────────────────────── */
 const io = new Server(server, { cors: corsOptions });
 
 io.on('connection', (socket) => {
@@ -181,6 +171,5 @@ io.on('connection', (socket) => {
     });
 });
 
-/* ─── Start ──────────────────────────────────────────────────── */
 const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => console.log(`🚀 Chat server on http://localhost:${PORT}`));

@@ -15,6 +15,9 @@ const Login = () => {
 				fontSize={14}
 				type='email'
 				size={"sm"}
+				variant="outline"
+				borderColor="gray.300"
+				borderWidth="1px"
 				value={inputs.email}
 				onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
 			/>
@@ -23,6 +26,9 @@ const Login = () => {
 				fontSize={14}
 				size={"sm"}
 				type='password'
+				variant="outline"
+				borderColor="gray.300"
+				borderWidth="1px"
 				value={inputs.password}
 				onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
 			/>
